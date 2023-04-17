@@ -32,12 +32,26 @@ public class SalesTaxCalculatorApp {
         if (parts.length >= 4) {
             int quantity = Integer.parseInt(parts[0]);
             BigDecimal price = new BigDecimal(parts[parts.length - 1]);
-            boolean isImported = input.contains("imported");
-            String name = input.substring(quantity + 1, input.indexOf(" at")).trim();
+            boolean isImported = false;
+            String name = "";
+
+            // Check for "imported" keyword in parts
+            for (int i = 1; i < parts.length - 2; i++) {
+                if (parts[i].equals("imported")) {
+                    isImported = true;
+                } else {
+                    name += parts[i] + " ";
+                }
+            }
+
+            // Remove trailing space from name
+            name = name.trim();
+
             return new Item(quantity, name, price, isImported);
         }
         return null;
     }
+
 
     public static void printReceipt(List<Item> basket) {
         BigDecimal totalTax = BigDecimal.ZERO;
