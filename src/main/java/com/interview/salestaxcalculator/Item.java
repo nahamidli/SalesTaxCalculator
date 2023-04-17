@@ -1,6 +1,9 @@
 package com.interview.salestaxcalculator;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.util.Properties;
 
 public class Item {
     private int quantity;
@@ -53,10 +56,40 @@ public class Item {
         return getPrice().add(getTaxAmount());
     }
 
+//    private boolean isExempt() {
+//        return name.contains("book") || name.contains("chocolate") || name.contains("pill");
+//    }
+
     private boolean isExempt() {
-        return name.contains("book") || name.contains("chocolate") || name.contains("pill");
+        String[] exemptTypes = getPropertyValues("exempt.item.types");
+        for (String exemptType : exemptTypes) {
+            if (name.contains(exemptType.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    private String[] getPropertyValues(String propertyName) {
+
+        Properties props = new Properties();
+        try {
+            // Load the properties file
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("item-types.properties");
+            props.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new String[0];
+        }
+
+        // Get the property value and split it by comma
+        String propertyValue = props.getProperty(propertyName);
+        if (propertyValue != null) {
+            return propertyValue.split(",");
+        } else {
+            return new String[0];
+        }
+    }
 
     // Method to round a BigDecimal value to the nearest multiple of 0.05
     private BigDecimal roundToNearestFiveCents(BigDecimal value) {
