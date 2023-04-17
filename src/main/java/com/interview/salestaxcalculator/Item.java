@@ -1,9 +1,7 @@
 package com.interview.salestaxcalculator;
 
-import java.io.IOException;
-import java.io.InputStream;
+import com.interview.salestaxcalculator.helper.ItemPropertiesReader;
 import java.math.BigDecimal;
-import java.util.Properties;
 
 public class Item {
     private int quantity;
@@ -56,12 +54,10 @@ public class Item {
         return getPrice().add(getTaxAmount());
     }
 
-//    private boolean isExempt() {
-//        return name.contains("book") || name.contains("chocolate") || name.contains("pill");
-//    }
-
     private boolean isExempt() {
-        String[] exemptTypes = getPropertyValues("exempt.item.types");
+
+        String[] exemptTypes = ItemPropertiesReader.getExemptItemTypes();
+
         for (String exemptType : exemptTypes) {
             if (name.contains(exemptType.toLowerCase())) {
                 return true;
@@ -70,35 +66,9 @@ public class Item {
         return false;
     }
 
-    private String[] getPropertyValues(String propertyName) {
-
-        Properties props = new Properties();
-        try {
-            // Load the properties file
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("item-types.properties");
-            props.load(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new String[0];
-        }
-
-        // Get the property value and split it by comma
-        String propertyValue = props.getProperty(propertyName);
-        if (propertyValue != null) {
-            return propertyValue.split(",");
-        } else {
-            return new String[0];
-        }
-    }
-
     // Method to round a BigDecimal value to the nearest multiple of 0.05
     private BigDecimal roundToNearestFiveCents(BigDecimal value) {
         BigDecimal roundedValue = value.divide(BigDecimal.valueOf(0.05)).setScale(0, BigDecimal.ROUND_UP);
         return roundedValue.multiply(BigDecimal.valueOf(0.05));
     }
 }
-
-
-
-
-
