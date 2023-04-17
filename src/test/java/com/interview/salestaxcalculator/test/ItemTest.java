@@ -25,7 +25,7 @@ public class ItemTest {
         Item item = new Item(1, "music CD", new BigDecimal("14.99"), false);
 
         // Expected price with tax for the item with 10% tax rate
-        BigDecimal expectedPriceWithTax = new BigDecimal("16.49").setScale(2); // Update here
+        BigDecimal expectedPriceWithTax = new BigDecimal("16.49").setScale(2);
 
         // Assert that the calculated price with tax matches the expected value
         assertEquals(expectedPriceWithTax, item.getPriceWithTax());
@@ -49,7 +49,7 @@ public class ItemTest {
         Item item = new Item(1, "imported box of chocolates", new BigDecimal("10.00"), true);
 
         // Expected price with tax for the imported item with 5% tax rate and import tax rate
-        BigDecimal expectedPriceWithTax = new BigDecimal("10.50").setScale(2); // Update here
+        BigDecimal expectedPriceWithTax = new BigDecimal("10.50").setScale(2);
 
         // Assert that the calculated price with tax matches the expected value
         assertEquals(expectedPriceWithTax, item.getPriceWithTax());
@@ -61,7 +61,7 @@ public class ItemTest {
         Item item = new Item(1, "imported book", new BigDecimal("15.00"), true);
 
         // Expected price with tax for the imported item with no tax rate and import tax rate
-        BigDecimal expectedPriceWithTax = new BigDecimal("15.75").setScale(2); // Update here
+        BigDecimal expectedPriceWithTax = new BigDecimal("15.75").setScale(2);
 
         // Assert that the calculated price with tax matches the expected value
         assertEquals(expectedPriceWithTax, item.getPriceWithTax());
