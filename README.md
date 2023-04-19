@@ -18,12 +18,22 @@ The Sales Tax Calculator App provides the following features:
 
 To use the Sales Tax Calculator App, follow these steps:
 
-1. Compile and run the `SalesTaxCalculatorApp.java` file using a Java compiler or integrated development environment (IDE).
-2. Enter the items in the basket one by one in the format "\<quantity> \<item> at \<price>".
-3. Press Enter after each item to add it to the basket.
-4. Press Enter without entering any input to calculate the total tax and amount for the basket and display the receipt.
-5. Review the receipt to see the item details, tax amount, and total amount.
+1. Make sure you have JDK (Java Development Kit) installed on your computer. If you don't have it, you can download and install it from the official Oracle website..
+2. Download the Sales Tax Calculator App source code from the repository and unzip it to a directory of your choice.
+3. Open a terminal or command prompt window and navigate to the root directory of the unzipped project.
+4. Run the following command to build the project:
+   ` ./gradlew build ` <br>
+5. Once the build is successful, navigate to the build/libs directory.
+6. Run the following command to start the Sales Tax Calculator App:
+ `java -jar SalesTaxCalculator-1.0-SNAPSHOT.jar`
+7. Alternatively, you can run the app directly from Gradle by running the following command:
+ `./gradlew run`
+8. Once the app starts, enter the items in the basket one by one in the format `<quantity> <item> at <price>`.
+9. Press Enter after each item to add it to the basket.
+10. Press Enter without entering any input to calculate the total tax and amount for the basket and display the receipt. 
+11. Review the receipt to see the item details, tax amount, and total amount.
 
+`NOTE:` You can also run the SalesTaxCalculatorApp.java file in IntelliJ IDEA or any other IDE and follow the same steps to use the app.
 
 ### Example Input:
 
